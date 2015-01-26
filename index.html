@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>CoreOS: Cluster out of the box</title>
+
+		<meta name="description" content="Introduction to CoreOS, etcd, fleet and shipping containers like a boss">
+		<meta name="author" content="Łukasz Adamczyk & Vladimir Mitiouchev">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h2>CoreOS: Cluster out of the box</h2>
+					<br>
+					<h4>Introduction to CoreOS, etcd, fleet and shipping containers like a boss</h4>
+					<br><br>
+					<small>Created by <a href="http://adamczyk.czest.pl">Łukasz Adamczyk</a> &amp; Vladimir Mitiouchev</small>
+					<br>
+					<img src="gfx/avsystem.png" style="border: 0px; background: none; box-shadow: none;">
+				</section>
+
+				<section>
+					<h3>Agenda</h3>
+					<br>
+					<ul>
+						<li class="fragment">Clustering</li>
+						<li class="fragment">etcd</li>
+						<li class="fragment">CoreOS</li>
+						<li class="fragment">fleet</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>Any questions?</h1>
+				</section>
+				
+				<section>
+					<h1>Thank you for your attention</h1>
+				</section>
+				
+				<section>
+					<img src="gfx/avsystem-big.png" style="border: 0px; background: none; box-shadow: none;">
+				</section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
