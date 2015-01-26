@@ -1,0 +1,42 @@
+
+					<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					preserveAspectRatio="xMidYMin" height="400px" viewBox="0 0 380 254" enable-background="new 0 0 380 254" xml:space="preserve">
+						<rect x="121.897" y="187.321" fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" width="60" height="60"/>
+						<rect x="194.41" y="187.321" fill="#FFFFFF" stroke="#939598" stroke-miterlimit="10" width="60" height="60"/>
+						<rect x="123.949" y="206.338" fill="none" width="57.949" height="26.042"/>
+						<text transform="matrix(1 0 0 1 145.7079 224.6942)" font-family="'SourceSansPro-Semibold', 'Source Sans Pro', sans-serif" font-size="26">A</text>
+						<rect x="195.436" y="206.338" fill="none" width="57.949" height="26.042"/>
+						<text transform="matrix(1 0 0 1 216.6882 224.6942)" fill="#808285" font-family="'SourceSansPro-Semibold', 'Source Sans Pro', sans-serif" font-size="26">B</text>
+						<rect x="121.897" y="5.962" fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" width="133" height="170"/>
+						<rect x="122.923" y="81.941" fill="none" width="132.744" height="26.042"/>
+						<text transform="matrix(1 0 0 1 166.965 97.4725)" font-family="'SourceSansPro-Semibold', 'Source Sans Pro', sans-serif" font-size="22">Data</text>
+						<g>
+						<polygon fill="#4CA0D9" points="346,71.261 316,81.261 316,121.261 346,131.261 376,121.261 376,81.261  "/>
+						<line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="316" y1="81.261" x2="346" y2="91.261"/>
+						<line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="346" y1="91.261" x2="376" y2="81.261"/>
+						<line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="346" y1="91.261" x2="346" y2="131.261"/>
+						<line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="361" y1="126.261" x2="361" y2="86.261"/>
+						<path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M316,121.261"/>
+						<path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M346,131.261"/>
+						<line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="331" y1="126.261" x2="331" y2="86.261"/>
+						<path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M376,121.261"/>
+						<path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M376,81.261"/>
+						<path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M316,121.261"/>
+						<path fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M316,81.261"/>
+						<line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="331" y1="86.261" x2="361" y2="76.261"/>
+						<line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="361" y1="86.261" x2="331" y2="76.261"/>
+						<line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="316" y1="101.261" x2="346" y2="111.261"/>
+						<line fill="none" stroke="#FFFFFF" stroke-miterlimit="10" x1="346" y1="111.261" x2="376" y2="101.261"/>
+						</g>
+						<rect x="315.628" y="140.359" fill="none" width="60.744" height="26.042"/>
+						<text transform="matrix(1 0 0 1 324.3283 150.3269)" font-family="'SourceSansPro-Regular', 'Source Sans Pro', sans-serif" font-size="14">Update</text>
+						<g>
+						<g>
+						<polyline fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="8,5" points="346,166.401 346,217.321 
+						246,217.321     "/>
+						<g>
+						<polygon points="248.809,213.617 247.235,217.321 248.809,221.024 240.03,217.321       "/>
+						</g>
+						</g>
+						</g>
+					</svg>

@@ -59,6 +59,89 @@
 						<li class="fragment">fleet</li>
 					</ul>
 				</section>
+				
+				<section>
+					<h3>CoreOS</h3>
+					<br>
+					<ul>
+						<li class="fragment">Cluster oriented</li>
+						<li class="fragment">Container oriented</li>
+						<li class="fragment">Chromium OS/Gentoo based</li>
+					</ul>
+				</section>
+				
+				<section>
+					
+					<img src="gfx/coreos-containers.svg" style="border: 0px; background: none; box-shadow: none;">
+				</section>
+
+				<section>
+					<h3>System updates</h3>
+					<img src="gfx/coreos-update1.svg" style="border: 0px; background: none; box-shadow: none;">
+					<br>
+					CoreOS is currently booted off partition A. An update is installed onto partition B
+				</section>
+
+				<section>
+					<h3>System updates</h3>
+					<img src="gfx/coreos-update2.svg" style="border: 0px; background: none; box-shadow: none;">
+					<br>
+					Machine is rebooted onto the B partition
+				</section>
+
+				<section>
+					<h3>System updates</h3>
+					<br>
+					<ul>
+						<li class="fragment">Safe and easy rollback</li>
+						<li class="fragment">Signed and easy to verify system image</li>
+						<li class="fragment">Fast reboot with kexec</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h3>cloud-config</h3>
+					<br>
+					<ul>
+						<li class="fragment">
+							coreos
+							<ul>
+								<li class="fragment">coreos.etcd.*</li>
+								<li class="fragment">coreos.fleet.*</li>
+								<li class="fragment">coreos.update.*</li>
+							</ul>
+						</li>
+						<li class="fragment">ssh_authorized_keys</li>
+						<li class="fragment">hostname</li>
+						<li class="fragment">users</li>
+						<li class="fragment">write_files</li>
+						<li class="fragment">manage_etc_hosts</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>cloud-config example</h3>
+					<br>
+					<pre><code data-trim contenteditable>
+#cloud-config
+hostname: foobar1
+ssh_authorized_keys:
+  - ssh-rsa AAAAC7KsWb3w4s9i5/HJqyAbqqyqnR9I9two2htKOsCRd...
+coreos:
+  update:
+    reboot-strategy: best-effort
+  etcd:
+    # generate using https://discovery.etcd.io/new
+    discovery: https://discovery.etcd.io/&lt;token&gt;
+    addr: 10.20.30.1:4001
+    peer_addr: 10.20.30.1:7001
+  units:
+    - name: etcd.service
+      command: start
+    - name: fleet.service
+      command: start
+					</code></pre>
+				</section>
 
 				<section>
 					<h1>Any questions?</h1>

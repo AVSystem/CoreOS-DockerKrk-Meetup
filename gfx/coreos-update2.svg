@@ -1,0 +1,41 @@
+
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					preserveAspectRatio="xMidYMin" height="400px" viewBox="0 0 141.667 250" enable-background="new 0 0 141.667 250" xml:space="preserve">
+						<rect x="4.763" y="185.94" fill="#FFFFFF" stroke="#939598" stroke-miterlimit="10" width="60" height="60"/>
+						<rect x="77.276" y="185.94" fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" width="60" height="60"/>
+						<rect x="6.814" y="204.958" fill="none" width="57.949" height="26.042"/>
+						<text transform="matrix(1 0 0 1 28.5733 223.3138)" fill="#808285" font-family="'SourceSansPro-Semibold', 'Source Sans Pro', sans-serif" font-size="26">A</text>
+						<rect x="78.301" y="204.958" fill="none" width="57.949" height="26.042"/>
+						<text transform="matrix(1 0 0 1 99.5536 223.3138)" fill="#000" font-family="'SourceSansPro-Semibold', 'Source Sans Pro', sans-serif" font-size="26">B</text>
+						<rect x="4.763" y="4.581" fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" width="133" height="170"/>
+						<rect x="5.788" y="80.56" fill="none" width="132.744" height="26.042"/>
+						<text transform="matrix(1 0 0 1 49.8303 96.0921)" font-family="'SourceSansPro-Semibold', 'Source Sans Pro', sans-serif" font-size="22">Data</text>
+						<g>
+						<polygon fill="#4CA0D9" points="124.5,224.624 115.125,227.749 115.125,240.249 124.5,243.374 133.875,240.249 133.875,227.749   
+						"/>
+
+						<line fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" x1="115.125" y1="227.749" x2="124.5" y2="230.874"/>
+
+						<line fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" x1="124.5" y1="230.874" x2="133.875" y2="227.749"/>
+
+						<line fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" x1="124.5" y1="230.874" x2="124.5" y2="243.374"/>
+
+						<line fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" x1="129.188" y1="241.812" x2="129.188" y2="229.312"/>
+						<path fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" d="M115.125,240.249"/>
+						<path fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" d="M124.5,243.374"/>
+
+						<line fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" x1="119.812" y1="241.812" x2="119.812" y2="229.312"/>
+						<path fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" d="M133.875,240.249"/>
+						<path fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" d="M133.875,227.749"/>
+						<path fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" d="M115.125,240.249"/>
+						<path fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" d="M115.125,227.749"/>
+
+						<line fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" x1="119.812" y1="229.312" x2="129.188" y2="226.187"/>
+
+						<line fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" x1="129.188" y1="229.312" x2="119.812" y2="226.187"/>
+
+						<line fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" x1="115.125" y1="233.999" x2="124.5" y2="237.124"/>
+
+						<line fill="none" stroke="#FFFFFF" stroke-width="0.3125" stroke-miterlimit="10" x1="124.5" y1="237.124" x2="133.875" y2="233.999"/>
+						</g>
+					</svg>
