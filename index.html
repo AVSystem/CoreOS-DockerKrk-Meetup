@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -60,36 +60,59 @@
 					</ul>
 				</section>
 				
-				<section>
+				<section data-background="#00639E">
 					<h3>CoreOS</h3>
 					<br>
 					<ul>
 						<li class="fragment">Cluster oriented</li>
 						<li class="fragment">Container oriented</li>
 						<li class="fragment">Chromium OS/Gentoo based</li>
+						<li class="fragment">Rolling releases</li>
+					</ul>
+				</section>
+
+				<section data-background="#00639E">
+					<h3>CoreOS</h3>
+					<br>
+					<ul>
+						<li class="fragment">Fast and lightweight distro</li>
+						<li class="fragment">64bit only</li>
+						<li class="fragment">Built in Chaos Monkey</li>
+						<li class="fragment">No package manager</li>
 					</ul>
 				</section>
 				
-				<section>
-					
+				<section data-background="#00639E">
+					<h3>Containers</h3>
+					<br>
 					<img src="gfx/coreos-containers.svg" style="border: 0px; background: none; box-shadow: none;">
 				</section>
 
-				<section>
+				<section data-background="#00639E">
+					<h3>Supported containers</h3>
+					<br>
+					<ul>
+						<li class="fragment">docker</li>
+						<li class="fragment">rocket</li>
+						<li class="fragment">systemd-nspawn</li>
+					</ul>
+				</section>
+
+				<section data-background="#00639E">
 					<h3>System updates</h3>
 					<img src="gfx/coreos-update1.svg" style="border: 0px; background: none; box-shadow: none;">
 					<br>
 					CoreOS is currently booted off partition A. An update is installed onto partition B
 				</section>
 
-				<section>
+				<section data-background="#00639E">
 					<h3>System updates</h3>
 					<img src="gfx/coreos-update2.svg" style="border: 0px; background: none; box-shadow: none;">
 					<br>
 					Machine is rebooted onto the B partition
 				</section>
 
-				<section>
+				<section data-background="#00639E">
 					<h3>System updates</h3>
 					<br>
 					<ul>
@@ -99,7 +122,7 @@
 					</ul>
 				</section>
 				
-				<section>
+				<section data-background="#00639E">
 					<h3>cloud-config</h3>
 					<br>
 					<ul>
@@ -119,7 +142,22 @@
 					</ul>
 				</section>
 
-				<section>
+				<section data-background="#00639E">
+					<h3>Installation from LiveCD</h3>
+					<br>
+					<code>coreos-install -d /dev/sda -C stable -c cloud-config.yaml</code>
+					<br>
+					<pre>
+ -d DEVICE   Install CoreOS to the given device.
+ -V VERSION  Version to install (e.g. current)
+ -C CHANNEL  Release channel to use (e.g. beta)
+ -o OEM      OEM type to install (e.g. openstack)
+ -c CLOUD    Insert a cloud-init config to be executed on boot
+ -t TMPDIR   Temporary location with enough space to download images
+</pre>
+				</section>
+
+				<section data-background="#00639E">
 					<h3>cloud-config example</h3>
 					<br>
 					<pre><code data-trim contenteditable>
@@ -128,8 +166,6 @@ hostname: foobar1
 ssh_authorized_keys:
   - ssh-rsa AAAAC7KsWb3w4s9i5/HJqyAbqqyqnR9I9two2htKOsCRd...
 coreos:
-  update:
-    reboot-strategy: best-effort
   etcd:
     # generate using https://discovery.etcd.io/new
     discovery: https://discovery.etcd.io/&lt;token&gt;
@@ -141,6 +177,23 @@ coreos:
     - name: fleet.service
       command: start
 					</code></pre>
+				</section>
+
+				<section data-background="#4d7e65">
+					<h3>systemd glossary</h3>
+					<br>
+					<ul>
+						<li class="fragment"><code>unit</code><br>is a configuration file that describes the properties of the process that you'd like to run</li>
+						<br><li class="fragment"><code>target</code><br>is a grouping mechanism that allows systemd to start up groups of processes at the same time</li>
+					</ul>
+				</section>
+
+				<section data-background="#4d7e65">
+					<h3>fleet</h3>
+					<br>
+					<blockquote>
+						"You can think of fleet as an extension of systemd that operates at the cluster level instead of the machine level. Systemd is a single machine init system; fleet is a cluster init system."
+					</blockquote>
 				</section>
 
 				<section>
