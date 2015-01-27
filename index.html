@@ -60,53 +60,51 @@
 					</ul>
 				</section>
 				<section>
-					<h3>Scalability</h3>
+					<h2>Scalability</h2>
 					<br>
-					<h4>How to deal with high load?</h4>
+					<h3>How to deal with high load?</h3>
 					<br>
 				</section>
 				<section>
-					<h3>Scalability</h3>
+					<h2>Scalability</h2>
                                         <br>
-                                        <h4>Scale up - give me more!</h4>
+                                        <h3>Scale up - give me more!</h3>
 					<img src="gfx/scale_up.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <br>
 					<ul>
 						<li class="fragment">Give more CPU to the node..</li>
 						<li class="fragment">Give more memory to the node..</li>
 						<li class="fragment">Give more storage to the node..</li>
-						<li class="fragment">Give more network to the node..</li>
 					</ul>
 				</section>
                                 <section>
-                                        <h3>Scalability</h3>
+                                        <h2>Scalability</h2>
                                         <br>
-                                        <h4>Scale up - painful consequences</h4>
+                                        <h3>Scale up - painful consequences</h3>
                                         <img src="gfx/scale_up.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <br>
                                         <ul>
                                                 <li class="fragment">Need for more and more expensive hardware</li>
                                                 <li class="fragment">Need for careful resource planning</li>
-						<li class="fragment">Cnstrained by technology - 1000 CPU on one board anyone?</li>
 						<li class="fragment">Availability issues - backup machine needs to be as fast as production</li>
                                         </ul>
                                 </section>
                                 <section>
-                                        <h3>Scalability</h3>
+                                        <h2>Scalability</h2>
                                         <br>
-                                        <h4>Scale out - let's cluster!</h4>
+                                        <h3>Scale out - let's cluster!</h3>
                                         <img src="gfx/scale_out.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <br>
                                         <ul>
                                                 <li class="fragment">Use cheap hardware!</li>
 						<li class="fragment">Easily add new nodes!</li>
-						<li class="fragment">Remove/reuse nodes when they are not needed</li>
+						<li class="fragment">Remove/reuse nodes as they are not needed</li>
                                         </ul>
                                 </section>
 				<section>
-					<h3>Clustering</h3>
+					<h2>Clustering</h2>
 					<br>
-					<h4>What is cluster?</h4>
+					<h3>What is cluster?</h3>
 					<br>
 					<ul>
 						<li class="fragment">Set of connected computers that work together</li>
@@ -116,9 +114,9 @@
 					</ul>
 				</section>
 				<section>
-					<h3>Clustering</h3>
+					<h2>Clustering</h2>
 					<br>
-					<h4>Examples:</h4>
+					<h3>Examples:</h3>
 					<br>
 					<ul>
 						<li class="fragment"><a href="http://www.linuxvirtualserver.org/">Linux Virtual Server</a></li>
@@ -127,44 +125,66 @@
 					</ul>
 				</section>
 				<section>
-					<h3>Etcd</h3>
+					<h2>Raft</h2>
 					<br>
-					<h4>What is etcd?</h4>
+					<h3>Raft consensus algorithm</h3>
+                                        <ul>
+                                                <li class="fragment">Designed as an alternative to overly complicated Paxos</li>
+                                                <li class="fragment">Strong leadership - flow only from leader to other servers</li>
+                                                <li class="fragment">Leader election by voting with randomized timers</li>
+                                                <li class="fragment">Membership changes by using join consensus approach</li>
+                                        </ul>
+				</section>
+                                <section>
+                                        <h3>Raft</h3>
+					<br>
+					<h3>Roles</h3>
+                                        <ul>
+                                                <li class="fragment">Leader</li>
+                                                <li class="fragment">Follower</li>
+                                                <li class="fragment">Candidate</li>
+                                        </ul>
+				<section>
+					<h2>Raftscope</h2>
+					<br>
+					<h3><a href="http://ramcloud.stanford.edu/raft.pdf">In Search of an Understandable Consensus Algorithm (Extended Version)</a>
+					<iframe src="raftscope/index.html" style="border: 0; width: 800px; height: 580px; margin-bottom: 20px"></iframe>
+				</section>
+				<section>
+					<h2>Etcd</h2>
+					<br>
 					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
 					<ul>
+						<li class="fragment">Raft consensus algorithm</li> 
 						<li class="fragment">Key-value distributed data store</li>
 						<li class="fragment">Simple API - JSON on HTTP</li>
 						<li class="fragment">Simple implementation of Raft consensus algorithm</li>
 					</ul>
 				</section>
-				<section>
-					<h3>Etcd</h3>
-					<br>
-					<h4><a href="http://raftconsensus.github.io/">Raft consensus algorith</a></h4>
-					<ul>
-						<li class="fragment">Designed as an alternative to Paxos</li>
-						<li class="fragment">Strong leader - flow only from leader to other servers</li>
-						<li class="fragment">Leader election - randomized timers</li>
-						<li class="fragment">Membership changes - join consensus</li>
-					</ul>
-				</section>
                                 <section>
-                                        <h3>Etcd</h3>
-                                        <br>
-                                        <h4><a href="http://raftconsensus.github.io/">Raft consensus algorith</a></h4>
+                                        <h2>Etcd</h2>
+                                        <br>					
+                                        <img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <ul>
-                                                <li class="fragment">Leader</li>
-						<li class="fragment">Follower</li>
-						<li class="fragment">Candidate</li>
-						<li class="fragment">Proxy</li>
-					</ul>
-				</section>
-				<section>
-					<h3>Etcd</h3>
-					<br>
-					<h4><a href="http://raftconsensus.github.io/">Raft consensus algorith</a></h4>
-					<iframe src="raftscope/index.html" style="border: 0; width: 800px; height: 580px; margin-bottom: 20px"></iframe>
-				</section>
+                                                <li class="fragment">Multiple discovery methods</li>
+						<li class="fragment">Typical cluster size - 5, 7 or 9 nodes</li>
+                                                <li class="fragment">Extra nodes become proxy and can be promoted to follower</li>
+                                        </ul>
+                                </section>
+                                <section>
+                                        <h2>Etcd</h2>
+                                        <br>                                    
+					<h3>Discovery service<h3><br>
+					<pre><code data-trim contenteditable>
+$ curl -w "\n" https://discovery.etcd.io/new
+https://discovery.etcd.io/6a28e078895c5ec737174db2419bb2f3
+</code></pre>
+                                        <ul>
+                                                <li class="fragment">First node become leader</li>
+                                                <li class="fragment">All following nodes become peers</li>
+                                                <li class="fragment">Discovery service stores peer adress and initial cluster size</li>
+                                        </ul>
+                                </section>
 				<section>
 					<h3>CoreOS</h3>
 					<br>
@@ -175,8 +195,7 @@
 					</ul>
 				</section>
 				
-				<section>
-					
+				<section>					
 					<img src="gfx/coreos-containers.svg" style="border: 0px; background: none; box-shadow: none;">
 				</section>
 
