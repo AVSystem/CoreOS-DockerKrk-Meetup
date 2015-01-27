@@ -44,7 +44,7 @@
 					<br>
 					<h4>Introduction to CoreOS, etcd, fleet and shipping containers like a boss</h4>
 					<br><br>
-					<small>Created by <a href="http://adamczyk.czest.pl">Łukasz Adamczyk</a> &amp; Vladimir Mitiouchev</small>
+					<small>Created by <a href="http://adamczyk.czest.pl">Łukasz Adamczyk</a> &amp; <a href="mailto:vovcia@gmail.com">Vladimir Mitiouchev</a></small>
 					<br>
 					<img src="gfx/avsystem.png" style="border: 0px; background: none; box-shadow: none;">
 				</section>
@@ -59,7 +59,112 @@
 						<li class="fragment">fleet</li>
 					</ul>
 				</section>
-				
+				<section>
+					<h3>Scalability</h3>
+					<br>
+					<h4>How to deal with high load?</h4>
+					<br>
+				</section>
+				<section>
+					<h3>Scalability</h3>
+                                        <br>
+                                        <h4>Scale up - give me more!</h4>
+					<img src="gfx/scale_up.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <br>
+					<ul>
+						<li class="fragment">Give more CPU to the node..</li>
+						<li class="fragment">Give more memory to the node..</li>
+						<li class="fragment">Give more storage to the node..</li>
+						<li class="fragment">Give more network to the node..</li>
+					</ul>
+				</section>
+                                <section>
+                                        <h3>Scalability</h3>
+                                        <br>
+                                        <h4>Scale up - painful consequences</h4>
+                                        <img src="gfx/scale_up.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <br>
+                                        <ul>
+                                                <li class="fragment">Need for more and more expensive hardware</li>
+                                                <li class="fragment">Need for careful resource planning</li>
+						<li class="fragment">Cnstrained by technology - 1000 CPU on one board anyone?</li>
+						<li class="fragment">Availability issues - backup machine needs to be as fast as production</li>
+                                        </ul>
+                                </section>
+                                <section>
+                                        <h3>Scalability</h3>
+                                        <br>
+                                        <h4>Scale out - let's cluster!</h4>
+                                        <img src="gfx/scale_out.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <br>
+                                        <ul>
+                                                <li class="fragment">Use cheap hardware!</li>
+						<li class="fragment">Easily add new nodes!</li>
+						<li class="fragment">Remove/reuse nodes when they are not needed</li>
+                                        </ul>
+                                </section>
+				<section>
+					<h3>Clustering</h3>
+					<br>
+					<h4>What is cluster?</h4>
+					<br>
+					<ul>
+						<li class="fragment">Set of connected computers that work together</li>
+						<li class="fragment">...to improve performance</li>
+						<li class="fragment">...and availability</li>
+						<li class="fragment">...and save money!</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Clustering</h3>
+					<br>
+					<h4>Examples:</h4>
+					<br>
+					<ul>
+						<li class="fragment"><a href="http://www.linuxvirtualserver.org/">Linux Virtual Server</a></li>
+						<li class="fragment"><a href="http://www.linux-ha.org">Linux-HA</a></li>
+						<li class="fragment"><a href="http://hadoop.apache.org/">Apache Hadoop</a></li>
+					</ul>
+				</section>
+				<section>
+					<h3>Etcd</h3>
+					<br>
+					<h4>What is etcd?</h4>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+					<ul>
+						<li class="fragment">Key-value distributed data store</li>
+						<li class="fragment">Simple API - JSON on HTTP</li>
+						<li class="fragment">Simple implementation of Raft consensus algorithm</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Etcd</h3>
+					<br>
+					<h4><a href="http://raftconsensus.github.io/">Raft consensus algorith</a></h4>
+					<ul>
+						<li class="fragment">Designed as an alternative to Paxos</li>
+						<li class="fragment">Strong leader - flow only from leader to other servers</li>
+						<li class="fragment">Leader election - randomized timers</li>
+						<li class="fragment">Membership changes - join consensus</li>
+					</ul>
+				</section>
+                                <section>
+                                        <h3>Etcd</h3>
+                                        <br>
+                                        <h4><a href="http://raftconsensus.github.io/">Raft consensus algorith</a></h4>
+                                        <ul>
+                                                <li class="fragment">Leader</li>
+						<li class="fragment">Follower</li>
+						<li class="fragment">Candidate</li>
+						<li class="fragment">Proxy</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Etcd</h3>
+					<br>
+					<h4><a href="http://raftconsensus.github.io/">Raft consensus algorith</a></h4>
+					<iframe src="raftscope/index.html" style="border: 0; width: 800px; height: 580px; margin-bottom: 20px"></iframe>
+				</section>
 				<section>
 					<h3>CoreOS</h3>
 					<br>
