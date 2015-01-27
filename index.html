@@ -77,7 +77,7 @@
 					<ul>
 						<li class="fragment">Fast and lightweight distro</li>
 						<li class="fragment">64bit only</li>
-						<li class="fragment">Built in Chaos Monkey</li>
+						<li class="fragment">Built-in Chaos Monkey</li>
 						<li class="fragment">No package manager</li>
 					</ul>
 				</section>
@@ -92,11 +92,19 @@
 					<h3>Supported containers</h3>
 					<br>
 					<ul>
-						<li class="fragment">docker</li>
-						<li class="fragment">rocket</li>
-						<li class="fragment">systemd-nspawn</li>
+						<li class="fragment"><code>docker</code></li>
+						<li class="fragment"><code>rocket</code></li>
+						<li class="fragment"><code>systemd-nspawn</code></li>
 					</ul>
 				</section>
+
+				<section data-background="#00639E">
+                                        <h3>Debugging tools</h3>
+                                        <br>
+                                        <code>/usr/bin/toolbox</code>
+                                        <br><br>
+					Toolbox will launch a container with full system privileges including access to system PIDs, network interfaces and other global information
+                                </section>
 
 				<section data-background="#00639E">
 					<h3>System updates</h3>
@@ -121,9 +129,24 @@
 						<li class="fragment">Fast reboot with kexec</li>
 					</ul>
 				</section>
+
+				<section data-background="#00639E">
+					<h3>Installation from LiveCD</h3>
+					<br>
+					<code><small>coreos-install -d /dev/sda -C stable -c cloud-config.yaml</small></code>
+					<br>
+					<pre>
+ -d DEVICE   Install CoreOS to the given device.
+ -V VERSION  Version to install (e.g. current)
+ -C CHANNEL  Release channel to use (e.g. beta)
+ -o OEM      OEM type to install (e.g. openstack)
+ -c CLOUD    Insert a cloud-init config to be executed on boot
+ -t TMPDIR   Temporary location with enough space to download images
+</pre>
+				</section>
 				
 				<section data-background="#00639E">
-					<h3>cloud-config</h3>
+					<h3>cloud-config sections</h3>
 					<br>
 					<ul>
 						<li class="fragment">
@@ -140,21 +163,6 @@
 						<li class="fragment">write_files</li>
 						<li class="fragment">manage_etc_hosts</li>
 					</ul>
-				</section>
-
-				<section data-background="#00639E">
-					<h3>Installation from LiveCD</h3>
-					<br>
-					<code>coreos-install -d /dev/sda -C stable -c cloud-config.yaml</code>
-					<br>
-					<pre>
- -d DEVICE   Install CoreOS to the given device.
- -V VERSION  Version to install (e.g. current)
- -C CHANNEL  Release channel to use (e.g. beta)
- -o OEM      OEM type to install (e.g. openstack)
- -c CLOUD    Insert a cloud-init config to be executed on boot
- -t TMPDIR   Temporary location with enough space to download images
-</pre>
 				</section>
 
 				<section data-background="#00639E">
