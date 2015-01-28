@@ -159,7 +159,7 @@
 					<h3>Basics</h3>
                                         <ul>
                                                 <li class="fragment">Server can be in one of three states: <i>Leader, follower,</i> or <i>candidate</i></li>
-                                                <li class="fragment">Time is divided into <i>terms</i>, and each term begins with an election</li>
+                                                <li class="fragment">Time is divided into <i>terms</i>, and each term begins with election</li>
 						<li class="fragment">Data is stored as indexed log applied to state machine</li>
                                                 <li class="fragment">Only two commands: <i>AppendEntries RPC</i> and <i>RequestVote RPC</i></li>
                                         </ul>
@@ -172,7 +172,7 @@
                                         <ul>
                                                 <li class="fragment">Leaders send empty AppendEntries (heartbeats) to followers</li>
 						<li class="fragment">If follower doesn't receive heartbeat in randomized timer, convert to candidate</li>
-                                                <li class="fragment">Candidate increment currentTerm, vote for self and send RequestVote to all other servers</li>
+                                                <li class="fragment">Candidate increment currentTerm, vote for itself and send RequestVote to all other servers</li>
                                                 <li class="fragment">If votes received from majority, convert to leader</li>
                                         </ul>
                                 </section>
@@ -519,7 +519,7 @@ Conflicts=nginx@*.service
 					<table>
 						<tr>
 							<td><code>MachineID</code></td>
-							<td>Require the unit be scheduled to the machine identified by the given string.</td>
+							<td>Require the unit to be scheduled to the machine identified by the given string.</td>
 						</tr>
 						<tr>
 							<td><code>MachineOf</code></td>
