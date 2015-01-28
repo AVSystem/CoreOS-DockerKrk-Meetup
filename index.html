@@ -125,9 +125,17 @@
 					</ul>
 				</section>
 				<section>
+					<h2>Consensus</h2><br><h3>is..</h3>
+					<ul>
+						<li class="fragment">"fundamental problem in fault-tolerant distributed systems"</li>
+						<li class="fragment">"multiple servers agreeing on values"</li>
+						<li class="fragment">"replicated state machines"</li>
+					</ul>
+				</section>
+				<section>
 					<h2>Raft</h2>
 					<br>
-					<h3>Raft consensus algorithm</h3>
+					<h3>Consensus algorithm</h3>
                                         <ul>
                                                 <li class="fragment">Designed as an alternative to overly complicated Paxos</li>
                                                 <li class="fragment">Strong leadership - flow only from leader to other servers</li>
@@ -136,24 +144,45 @@
                                         </ul>
 				</section>
                                 <section>
-                                        <h3>Raft</h3>
+                                        <h2>Raft</h2>
 					<br>
-					<h3>Roles</h3>
+					<h3>Basics</h3>
                                         <ul>
-                                                <li class="fragment">Leader</li>
-                                                <li class="fragment">Follower</li>
-                                                <li class="fragment">Candidate</li>
+                                                <li class="fragment">Server can be in one of three states: <i>Leader, follower,</i> or <i>candidate</i></li>
+                                                <li class="fragment">Time is divided into <i>terms</i>, and each term begins with an election</li>
+						<li class="fragment">Data is stored as indexed log applied to state machine</li>
+                                                <li class="fragment">Only two commands: <i>AppendEntries RPC</i> and <i>RequestVote RPC</i></li>
                                         </ul>
 				</section>
 				<section>
+                                        <h2>Raft</h2>
+                                        <br>
+                                        <h3>Elections</h3>
+                                        <ul>
+                                                <li class="fragment">Leaders send empty AppendEntries (heartbeats) to followers</li>
+						<li class="fragment">If follower doesn't receive heartbeat in randomized timer, convert to candidate</li>
+                                                <li class="fragment">Candidate increment currentTerm, vote for self and send RequestVote to all other servers</li>
+                                                <li class="fragment">If votes received from majority, convert to leader</li>
+                                        </ul>
+                                </section>
+				<section>
+                                        <h2>Raft</h2>
+                                        <br>
+                                        <h3>Operations</h3>
+                                        <ul>
+                                                <li class="fragment">Leaders receive command from client, write to log and send AppendEntries to followers (in parallel)</li>
+                                                <li class="fragment">Followers acknowledge command (if agreed on term number and log index)</li>
+                                                <li class="fragment">When command is replicated to majority, apply to staten machine and return result to client</li>
+                                        </ul>
+                                </section>
+ 
+				<section>
 					<h2>Raftscope</h2>
 					<br>
-					<h4><a href="http://ramcloud.stanford.edu/raft.pdf">In Search of an Understandable Consensus Algorithm (Extended Version)</a></h4>
+					<h3><a href="http://ramcloud.stanford.edu/raft.pdf">In Search of an Understandable Consensus Algorithm (Extended Version)</a></h3>
 					<iframe src="raftscope/index.html" style="border: 0; width: 800px; height: 580px; margin-bottom: 20px"></iframe>
 				</section>
 				<section>
-					<h2>Etcd</h2>
-					<br>
 					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
 					<ul>
 						<li class="fragment">Raft consensus algorithm</li> 
@@ -163,29 +192,93 @@
 					</ul>
 				</section>
                                 <section>
-                                        <h2>Etcd</h2>
-                                        <br>					
                                         <img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <ul>
                                                 <li class="fragment">Multiple discovery methods</li>
 						<li class="fragment">Typical cluster size - 5, 7 or 9 nodes</li>
-                                                <li class="fragment">Extra nodes become proxy and can be promoted to follower</li>
+                                                <li class="fragment">Extra nodes can become proxy and can be promoted to follower</li>
                                         </ul>
                                 </section>
                                 <section>
-                                        <h2>Etcd</h2>
-                                        <br>                                    
-					<h3>Discovery service<h3><br>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+					<h3>Discovery service</h3><br>
 					<pre><code data-trim contenteditable>
 $ curl -w "\n" https://discovery.etcd.io/new
 https://discovery.etcd.io/6a28e078895c5ec737174db2419bb2f3
 </code></pre>
                                         <ul>
+						<li class="fragment">Discovery service stores peer address and initial cluster size</li>
                                                 <li class="fragment">First node become leader</li>
                                                 <li class="fragment">All following nodes become peers</li>
-                                                <li class="fragment">Discovery service stores peer adress and initial cluster size</li>
+						<li class="fragment">Run Your own discovery from <a href="https://github.com/coreos/discovery.etcd.io">https://github.com/coreos/discovery.etcd.io</a></li>
                                         </ul>
                                 </section>
+                                <section>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <h3>Operation on keys</h3><br>
+                                        <pre><code data-trim contenteditable>
+$ etcdctl set /message Hello
+Hello
+
+$ curl -L -X PUT http://127.0.0.1:4001/v2/keys/message -d value="Hello"
+{"action":"set","node":{"key":"/message","value":"Hello","modifiedIndex":4,"createdIndex":4}}
+
+$ etcdctl get /message
+Hello
+
+$ curl -L http://127.0.0.1:4001/v2/keys/message
+{"action":"get","node":{"key":"/message","value":"Hello","modifiedIndex":4,"createdIndex":4}}
+
+$ etcdctl rm /message
+
+$ curl -L -X DELETE http://127.0.0.1:4001/v2/keys/message
+{"action":"delete","node":{"key":"/message","modifiedIndex":19,"createdIndex":4}}
+</code></pre>
+                                </section>
+                                <section>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <h3>Operation on directories</h3><br>
+                                        <pre><code data-trim contenteditable>
+$ etcdctl mkdir /foo-service
+Cannot print key [/foo-service: Is a directory]
+
+$ etcdctl set /foo-service/container1 localhost:1111
+localhost:1111
+
+$ curl -L -X PUT http://127.0.0.1:4001/v2/keys/foo-service/container1 -d value="localhost:1111"
+{"action":"set","node":{"key":"/foo-service/container1","value":"localhost:1111","modifiedIndex":17,"createdIndex":17}}
+
+$ etcdctl ls /foo-service
+/foo-service/container1
+
+$ curl -L http://127.0.0.1:4001/v2/keys/foo-service
+{"action":"get","node":{"key":"/foo-service","dir":true,"nodes":[{"key":"/foo-service/container1","value":"localhost:1111","modifiedIndex":17,"createdIndex":17}],"modifiedIndex":17,"createdIndex":17}}
+</code></pre>
+                                </section>
+                                <section>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <h3>Test and Set</h3><br>
+                                        <pre><code data-trim contenteditable>
+$ etcdctl set /message "Hi" --swap-with-value "Hello"
+Hi
+
+$ curl -L -X PUT http://127.0.0.1:4001/v2/keys/message?prevValue=Hello -d value=Hi
+{"action":"compareAndSwap","node":{"key":"/message","value":"Hi","modifiedIndex":28,"createdIndex":27}}
+</code></pre>
+                                </section>
+                                <section>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <h3>TTL</h3><br>
+                                        <pre><code data-trim contenteditable>
+$ etcdctl set /foo "Expiring Soon" --ttl 20
+Expiring Soon
+
+$ curl -L -X PUT http://127.0.0.1:4001/v2/keys/foo?ttl=20 -d value=bar
+{"action":"set","node":{"key":"/foo","value":"bar","expiration":"2014-02-10T19:54:49.357382223Z","ttl":20,"modifiedIndex":31,"createdIndex":31}}
+</code></pre>
+
+                                </section>
+
 				<section>
 					<h3>CoreOS</h3>
 					<br>
