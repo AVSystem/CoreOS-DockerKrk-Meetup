@@ -50,7 +50,7 @@
 				</section>
 
 				<section>
-					<h3>Agenda</h3>
+					<h2>Agenda</h2>
 					<br>
 					<ul>
 						<li class="fragment">Clustering</li>
@@ -61,7 +61,7 @@
 				</section>
 				
 				<section data-background="#00639E">
-					<h3>CoreOS</h3>
+					<h2>CoreOS</h2>
 					<br>
 					<ul>
 						<li class="fragment">Cluster oriented</li>
@@ -72,7 +72,7 @@
 				</section>
 
 				<section data-background="#00639E">
-					<h3>CoreOS</h3>
+					<h2>CoreOS</h2>
 					<br>
 					<ul>
 						<li class="fragment">Fast and lightweight distro</li>
@@ -83,13 +83,13 @@
 				</section>
 				
 				<section data-background="#00639E">
-					<h3>Containers</h3>
+					<h2>Containers</h2>
 					<br>
 					<img src="gfx/coreos-containers.svg" style="border: 0px; background: none; box-shadow: none;">
 				</section>
 
 				<section data-background="#00639E">
-					<h3>Supported containers</h3>
+					<h2>Supported containers</h2>
 					<br>
 					<ul>
 						<li class="fragment"><code>docker</code></li>
@@ -99,7 +99,7 @@
 				</section>
 
 				<section data-background="#00639E">
-                                        <h3>Debugging tools</h3>
+                                        <h2>Debugging tools</h2>
                                         <br>
                                         <code>/usr/bin/toolbox</code>
                                         <br><br>
@@ -107,21 +107,21 @@
                                 </section>
 
 				<section data-background="#00639E">
-					<h3>System updates</h3>
+					<h2>System updates</h2>
 					<img src="gfx/coreos-update1.svg" style="border: 0px; background: none; box-shadow: none;">
 					<br>
 					CoreOS is currently booted off partition A. An update is installed onto partition B
 				</section>
 
 				<section data-background="#00639E">
-					<h3>System updates</h3>
+					<h2>System updates</h2>
 					<img src="gfx/coreos-update2.svg" style="border: 0px; background: none; box-shadow: none;">
 					<br>
 					Machine is rebooted onto the B partition
 				</section>
 
 				<section data-background="#00639E">
-					<h3>System updates</h3>
+					<h2>System updates</h2>
 					<br>
 					<ul>
 						<li class="fragment">Safe and easy rollback</li>
@@ -131,7 +131,7 @@
 				</section>
 
 				<section data-background="#00639E">
-					<h3>Installation from LiveCD</h3>
+					<h2>Installation from LiveCD</h2>
 					<br>
 					<code><small>coreos-install -d /dev/sda -C stable -c cloud-config.yaml</small></code>
 					<br>
@@ -146,7 +146,7 @@
 				</section>
 				
 				<section data-background="#00639E">
-					<h3>cloud-config sections</h3>
+					<h2>cloud-config sections</h2>
 					<br>
 					<ul>
 						<li class="fragment">
@@ -166,7 +166,7 @@
 				</section>
 
 				<section data-background="#00639E">
-					<h3>cloud-config example</h3>
+					<h2>cloud-config example</h2>
 					<br>
 					<pre><code data-trim contenteditable>
 #cloud-config
@@ -188,7 +188,7 @@ coreos:
 				</section>
 
 				<section data-background="#4d7e65">
-					<h3>systemd glossary</h3>
+					<h2>systemd glossary</h2>
 					<br>
 					<ul>
 						<li class="fragment"><code>unit</code><br>is a configuration file that describes the properties of the process that you'd like to run</li>
@@ -197,11 +197,40 @@ coreos:
 				</section>
 
 				<section data-background="#4d7e65">
-					<h3>fleet</h3>
+					<h2>fleet</h2>
 					<br>
 					<blockquote>
 						"You can think of fleet as an extension of systemd that operates at the cluster level instead of the machine level. Systemd is a single machine init system; fleet is a cluster init system."
 					</blockquote>
+				</section>
+
+				<section data-background="#4d7e65">
+					<h2>fleet-specific options</h2>
+					<br>
+					<small>
+					<table>
+						<tr>
+							<td><code>MachineID</code></td>
+							<td>Require the unit be scheduled to the machine identified by the given string.</td>
+						</tr>
+						<tr>
+							<td><code>MachineOf</code></td>
+							<td>Limit eligible machines to the one that hosts a specific unit.</td>
+						</tr>
+						<tr>
+							<td><code>MachineMetadata</code></td>
+							<td>Limit eligible machines to those with this specific metadata.</td>
+						</tr>
+						<tr>
+							<td><code>Conflicts</code></td>
+							<td>Prevent a unit from being collocated with other units using glob-matching on the other unit names.</td>
+						</tr>
+						<tr>
+							<td><code>Global</code></td>
+							<td>Schedule this unit on all agents in the cluster.</td>
+						</tr>
+					</table>
+					</small>
 				</section>
 
 				<section>
