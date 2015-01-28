@@ -215,7 +215,7 @@
 
                                 <section data-background="#b5533c">
 					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
-					<h3>Discovery service</h3><br>
+					<h3>Discovery service</h3>
 					<pre><code data-trim contenteditable>
 $ curl -w "\n" https://discovery.etcd.io/new
 https://discovery.etcd.io/6a28e078895c5ec737174db2419bb2f3
@@ -229,12 +229,10 @@ https://discovery.etcd.io/6a28e078895c5ec737174db2419bb2f3
                                 </section>
 
                                 <section data-background="#b5533c">
-					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
-                                        <h3>Keys: set</h3><br>
+                                        <h3>Keys: set</h3>
                                         <pre><code data-trim contenteditable>
 $ etcdctl set /message Hello
 Hello
-
 $ curl -sL -X PUT http://127.0.0.1:4001/v2/keys/message -d value="Hello" | python -m json.tool
 {
     "action": "set",
@@ -242,19 +240,17 @@ $ curl -sL -X PUT http://127.0.0.1:4001/v2/keys/message -d value="Hello" | pytho
         "createdIndex": 6,
         "key": "/message",
         "modifiedIndex": 6,
-        "value": "Hello"
-    },
+        "value": "Hello"},
     "prevNode": {
         "createdIndex": 5,
         "key": "/message",
         "modifiedIndex": 5,
-        "value": "Hello"
-    }
+        "value": "Hello"}
 }
 </code></pre>			</section>
-                                <section>
-                                        <img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
-                                        <h3>Keys: get</h3><br>
+
+                                <section data-background="#b5533c">
+					<h2>etcd Keys: get</h2>
                                         <pre><code data-trim contenteditable>
 $ etcdctl get /message
 Hello
@@ -270,9 +266,10 @@ $ curl -sL http://127.0.0.1:4001/v2/keys/message | python -m json.tool
     }
 }
 </code></pre>			</section>
+
                                 <section data-background="#b5533c">
 					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
-                                        <h3>Directories</h3><br>
+                                        <h3>Directories</h3>
                                         <pre><code data-trim contenteditable>
 $ etcdctl mkdir /foo-service
 Cannot print key [/foo-service: Is a directory]
