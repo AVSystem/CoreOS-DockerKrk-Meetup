@@ -44,7 +44,7 @@
 					<br>
 					<h4>Introduction to CoreOS, etcd, fleet and shipping containers like a boss</h4>
 					<br><br>
-					<small>Created by <a href="http://adamczyk.czest.pl">Łukasz Adamczyk</a> &amp; Vladimir Mitiouchev</small>
+					<small>Created by <a href="http://adamczyk.czest.pl">Łukasz Adamczyk</a> &amp; <a href="mailto:vovcia@gmail.com">Vladimir Mitiouchev</a></small>
 					<br>
 					<img src="gfx/avsystem.png" style="border: 0px; background: none; box-shadow: none;">
 				</section>
@@ -58,6 +58,307 @@
 						<li class="fragment">CoreOS</li>
 						<li class="fragment">fleet</li>
 					</ul>
+				</section>
+				<section>
+					<h2>Scalability</h2>
+					<br>
+					<h3>How to deal with high load?</h3>
+					<br>
+				</section>
+				<section>
+					<h2>Scalability</h2>
+                                        <br>
+                                        <h3>Scale up - give me more!</h3>
+					<img src="gfx/scale_up.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <br>
+					<ul>
+						<li class="fragment">Give more CPU to the node..</li>
+						<li class="fragment">Give more memory to the node..</li>
+						<li class="fragment">Give more storage to the node..</li>
+					</ul>
+				</section>
+                                <section>
+                                        <h2>Scalability</h2>
+                                        <br>
+                                        <h3>Scale up - painful consequences</h3>
+                                        <img src="gfx/scale_up.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <br>
+                                        <ul>
+                                                <li class="fragment">Need for more and more expensive hardware</li>
+                                                <li class="fragment">Need for careful resource planning</li>
+						<li class="fragment">Availability issues - backup machine needs to be as fast as production</li>
+                                        </ul>
+                                </section>
+                                <section>
+                                        <h2>Scalability</h2>
+                                        <br>
+                                        <h3>Scale out - let's cluster!</h3>
+                                        <img src="gfx/scale_out.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <br>
+                                        <ul>
+                                                <li class="fragment">Use cheap hardware!</li>
+						<li class="fragment">Easily add new nodes!</li>
+						<li class="fragment">Remove/reuse nodes as they are not needed</li>
+                                        </ul>
+                                </section>
+				<section>
+					<h2>Clustering</h2>
+					<br>
+					<h3>What is cluster?</h3>
+					<br>
+					<ul>
+						<li class="fragment">Set of connected computers that work together</li>
+						<li class="fragment">...to improve performance</li>
+						<li class="fragment">...and availability</li>
+						<li class="fragment">...and save money!</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Clustering</h2>
+					<br>
+					<h3>Examples:</h3>
+					<br>
+					<ul>
+						<li class="fragment"><a href="http://www.linuxvirtualserver.org/">Linux Virtual Server</a></li>
+						<li class="fragment"><a href="http://www.linux-ha.org">Linux-HA</a></li>
+						<li class="fragment"><a href="http://hadoop.apache.org/">Apache Hadoop</a></li>
+					</ul>
+				</section>
+				<section>
+					<h2>Consensus</h2><br><h3>is..</h3>
+					<ul>
+						<li class="fragment">"fundamental problem in fault-tolerant distributed systems"</li>
+						<li class="fragment">"multiple servers agreeing on values"</li>
+						<li class="fragment">"replicated state machines"</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Raft</h2>
+					<br>
+					<h3>Consensus algorithm</h3>
+                                        <ul>
+                                                <li class="fragment">Designed as an alternative to overly complicated Paxos</li>
+                                                <li class="fragment">Strong leadership - flow only from leader to other servers</li>
+                                                <li class="fragment">Leader election by voting with randomized timers</li>
+                                                <li class="fragment">Membership changes by using join consensus approach</li>
+                                        </ul>
+				</section>
+                                <section>
+                                        <h2>Raft</h2>
+					<br>
+					<h3>Basics</h3>
+                                        <ul>
+                                                <li class="fragment">Server can be in one of three states: <i>Leader, follower,</i> or <i>candidate</i></li>
+                                                <li class="fragment">Time is divided into <i>terms</i>, and each term begins with an election</li>
+						<li class="fragment">Data is stored as indexed log applied to state machine</li>
+                                                <li class="fragment">Only two commands: <i>AppendEntries RPC</i> and <i>RequestVote RPC</i></li>
+                                        </ul>
+				</section>
+				<section>
+                                        <h2>Raft</h2>
+                                        <br>
+                                        <h3>Elections</h3>
+                                        <ul>
+                                                <li class="fragment">Leaders send empty AppendEntries (heartbeats) to followers</li>
+						<li class="fragment">If follower doesn't receive heartbeat in randomized timer, convert to candidate</li>
+                                                <li class="fragment">Candidate increment currentTerm, vote for self and send RequestVote to all other servers</li>
+                                                <li class="fragment">If votes received from majority, convert to leader</li>
+                                        </ul>
+                                </section>
+				<section>
+                                        <h2>Raft</h2>
+                                        <br>
+                                        <h3>Operations</h3>
+                                        <ul>
+                                                <li class="fragment">Leaders receive command from client, write to log and send AppendEntries to followers (in parallel)</li>
+                                                <li class="fragment">Followers acknowledge command (if agreed on term number and log index)</li>
+                                                <li class="fragment">When command is replicated to majority, apply to staten machine and return result to client</li>
+                                        </ul>
+                                </section>
+ 
+				<section>
+					<h2>Raftscope</h2>
+					<br>
+					<h3><a href="http://ramcloud.stanford.edu/raft.pdf">In Search of an Understandable Consensus Algorithm (Extended Version)</a></h3>
+					<iframe src="raftscope/index.html" style="border: 0; width: 800px; height: 580px; margin-bottom: 20px"></iframe>
+				</section>
+				<section>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+					<ul>
+						<li class="fragment">Raft consensus algorithm</li> 
+						<li class="fragment">Key-value distributed data store</li>
+						<li class="fragment">Simple API - JSON on HTTP</li>
+						<li class="fragment">Simple implementation of Raft consensus algorithm</li>
+					</ul>
+				</section>
+                                <section>
+                                        <img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <ul>
+                                                <li class="fragment">Multiple discovery methods</li>
+						<li class="fragment">Typical cluster size - 5, 7 or 9 nodes</li>
+                                                <li class="fragment">Extra nodes can become proxy and can be promoted to follower</li>
+                                        </ul>
+                                </section>
+                                <section>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+					<h3>Discovery service</h3><br>
+					<pre><code data-trim contenteditable>
+$ curl -w "\n" https://discovery.etcd.io/new
+https://discovery.etcd.io/6a28e078895c5ec737174db2419bb2f3
+</code></pre>
+                                        <ul>
+						<li class="fragment">Discovery service stores peer address and initial cluster size</li>
+                                                <li class="fragment">First node become leader</li>
+                                                <li class="fragment">All following nodes become peers</li>
+						<li class="fragment">Run Your own discovery from <a href="https://github.com/coreos/discovery.etcd.io">https://github.com/coreos/discovery.etcd.io</a></li>
+                                        </ul>
+                                </section>
+                                <section>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <h3>Operation on keys</h3><br>
+                                        <pre><code data-trim contenteditable>
+$ etcdctl set /message Hello
+Hello
+
+$ curl -L -X PUT http://127.0.0.1:4001/v2/keys/message -d value="Hello"
+{"action":"set","node":{"key":"/message","value":"Hello","modifiedIndex":4,"createdIndex":4}}
+
+$ etcdctl get /message
+Hello
+
+$ curl -L http://127.0.0.1:4001/v2/keys/message
+{"action":"get","node":{"key":"/message","value":"Hello","modifiedIndex":4,"createdIndex":4}}
+
+$ etcdctl rm /message
+
+$ curl -L -X DELETE http://127.0.0.1:4001/v2/keys/message
+{"action":"delete","node":{"key":"/message","modifiedIndex":19,"createdIndex":4}}
+</code></pre>
+                                </section>
+                                <section>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <h3>Operation on directories</h3><br>
+                                        <pre><code data-trim contenteditable>
+$ etcdctl mkdir /foo-service
+Cannot print key [/foo-service: Is a directory]
+
+$ etcdctl set /foo-service/container1 localhost:1111
+localhost:1111
+
+$ curl -L -X PUT http://127.0.0.1:4001/v2/keys/foo-service/container1 -d value="localhost:1111"
+{"action":"set","node":{"key":"/foo-service/container1","value":"localhost:1111","modifiedIndex":17,"createdIndex":17}}
+
+$ etcdctl ls /foo-service
+/foo-service/container1
+
+$ curl -L http://127.0.0.1:4001/v2/keys/foo-service
+{"action":"get","node":{"key":"/foo-service","dir":true,"nodes":[{"key":"/foo-service/container1","value":"localhost:1111","modifiedIndex":17,"createdIndex":17}],"modifiedIndex":17,"createdIndex":17}}
+</code></pre>
+                                </section>
+                                <section>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <h3>Test and Set</h3><br>
+                                        <pre><code data-trim contenteditable>
+$ etcdctl set /message "Hi" --swap-with-value "Hello"
+Hi
+
+$ curl -L -X PUT http://127.0.0.1:4001/v2/keys/message?prevValue=Hello -d value=Hi
+{"action":"compareAndSwap","node":{"key":"/message","value":"Hi","modifiedIndex":28,"createdIndex":27}}
+</code></pre>
+                                </section>
+                                <section>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <h3>TTL</h3><br>
+                                        <pre><code data-trim contenteditable>
+$ etcdctl set /foo "Expiring Soon" --ttl 20
+Expiring Soon
+
+$ curl -L -X PUT http://127.0.0.1:4001/v2/keys/foo?ttl=20 -d value=bar
+{"action":"set","node":{"key":"/foo","value":"bar","expiration":"2014-02-10T19:54:49.357382223Z","ttl":20,"modifiedIndex":31,"createdIndex":31}}
+</code></pre>
+
+                                </section>
+
+				<section>
+					<h3>CoreOS</h3>
+					<br>
+					<ul>
+						<li class="fragment">Cluster oriented</li>
+						<li class="fragment">Container oriented</li>
+						<li class="fragment">Chromium OS/Gentoo based</li>
+					</ul>
+				</section>
+				
+				<section>					
+					<img src="gfx/coreos-containers.svg" style="border: 0px; background: none; box-shadow: none;">
+				</section>
+
+				<section>
+					<h3>System updates</h3>
+					<img src="gfx/coreos-update1.svg" style="border: 0px; background: none; box-shadow: none;">
+					<br>
+					CoreOS is currently booted off partition A. An update is installed onto partition B
+				</section>
+
+				<section>
+					<h3>System updates</h3>
+					<img src="gfx/coreos-update2.svg" style="border: 0px; background: none; box-shadow: none;">
+					<br>
+					Machine is rebooted onto the B partition
+				</section>
+
+				<section>
+					<h3>System updates</h3>
+					<br>
+					<ul>
+						<li class="fragment">Safe and easy rollback</li>
+						<li class="fragment">Signed and easy to verify system image</li>
+						<li class="fragment">Fast reboot with kexec</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h3>cloud-config</h3>
+					<br>
+					<ul>
+						<li class="fragment">
+							coreos
+							<ul>
+								<li class="fragment">coreos.etcd.*</li>
+								<li class="fragment">coreos.fleet.*</li>
+								<li class="fragment">coreos.update.*</li>
+							</ul>
+						</li>
+						<li class="fragment">ssh_authorized_keys</li>
+						<li class="fragment">hostname</li>
+						<li class="fragment">users</li>
+						<li class="fragment">write_files</li>
+						<li class="fragment">manage_etc_hosts</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>cloud-config example</h3>
+					<br>
+					<pre><code data-trim contenteditable>
+#cloud-config
+hostname: foobar1
+ssh_authorized_keys:
+  - ssh-rsa AAAAC7KsWb3w4s9i5/HJqyAbqqyqnR9I9two2htKOsCRd...
+coreos:
+  update:
+    reboot-strategy: best-effort
+  etcd:
+    # generate using https://discovery.etcd.io/new
+    discovery: https://discovery.etcd.io/&lt;token&gt;
+    addr: 10.20.30.1:4001
+    peer_addr: 10.20.30.1:7001
+  units:
+    - name: etcd.service
+      command: start
+    - name: fleet.service
+      command: start
+					</code></pre>
 				</section>
 
 				<section>
