@@ -74,9 +74,9 @@
 					<img src="gfx/scale_up.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <br>
 					<ul>
-						<li class="fragment">Give more CPU to the node..</li>
-						<li class="fragment">Give more memory to the node..</li>
-						<li class="fragment">Give more storage to the node..</li>
+						<li class="fragment">Give more CPU to the node...</li>
+						<li class="fragment">Give more memory to the node...</li>
+						<li class="fragment">Give more storage to the node...</li>
 					</ul>
 				</section>
 
@@ -132,7 +132,8 @@
 				</section>
 
 				<section data-background="#ffffff">
-					<h2>Consensus</h2><br><h3>is..</h3>
+					<h2>Consensus</h2>
+					<br>
 					<ul>
 						<li class="fragment">"fundamental problem in fault-tolerant distributed systems"</li>
 						<li class="fragment">"multiple servers agreeing on values"</li>
@@ -221,7 +222,7 @@ https://discovery.etcd.io/6a28e078895c5ec737174db2419bb2f3
 </code></pre>
                                         <ul>
 						<li class="fragment">Discovery service stores peer address and initial cluster size</li>
-                                                <li class="fragment">First node become leader</li>
+                                                <li class="fragment">First node becomes leader</li>
                                                 <li class="fragment">All following nodes become peers</li>
 						<li class="fragment">Run Your own discovery from <a href="https://github.com/coreos/discovery.etcd.io">https://github.com/coreos/discovery.etcd.io</a></li>
                                         </ul>
@@ -441,7 +442,23 @@ coreos:
 				</section>
 
 				<section data-background="#4d7e65">
-					<h2>fleet-specific options</h2>
+					<h2>unit template example</h2>
+					<br>
+					<pre><code data-trim contenteditable>
+foobar1 core # cat nginx\@.service
+[Service]
+ExecStartPre=-/usr/bin/docker pull nginx
+ExecStartPre=-/usr/bin/docker kill foobar-%i
+ExecStartPre=-/usr/bin/docker rm foobar-%i
+ExecStart=/usr/bin/docker run --name foobar-%i -P nginx
+ExecStop=/usr/bin/docker stop foobar-%i
+[X-Fleet]
+Conflicts=nginx@*.service
+					</code></pre>
+				</section>
+
+				<section data-background="#4d7e65">
+					<h2>fleet specific options</h2>
 					<br>
 					<small>
 					<table>
@@ -467,6 +484,72 @@ coreos:
 						</tr>
 					</table>
 					</small>
+				</section>
+
+				<section data-background="#4d7e65">
+					<h2>fleetctl list-machines</h2>
+					<br>
+					<pre><code data-trim contenteditable>
+foobar1 core # fleetctl list-machines
+MACHINE		IP		METADATA
+2fbee5bc...	10.0.0.122	-
+4b9c044b...	10.0.0.123	-
+6655d701...	10.0.0.129	-
+					</code></pre>
+				</section>
+
+				<section data-background="#4d7e65">
+					<h2>fleetctl submit</h2>
+					<br>
+					<pre><code data-trim contenteditable>
+foobar1 core # fleetctl list-unit-files
+UNIT    HASH    DSTATE  STATE   TARGET
+foobar1 core # fleetctl list-units
+UNIT    MACHINE ACTIVE  SUB
+foobar1 core # fleetctl submit nginx@.service
+foobar1 core # fleetctl list-unit-files
+UNIT            HASH    DSTATE          STATE           TARGET
+nginx@.service  9c9269c inactive        inactive        -
+					</code></pre>
+				</section>
+
+				<section data-background="#4d7e65">
+					<h2>fleetctl start/load</h2>
+					<br>
+					<pre><code data-trim contenteditable>
+foobar1 core # fleetctl start nginx@1
+Unit nginx@1.service launched on 2fbee5bc.../10.0.0.122
+foobar1 core # fleetctl load nginx@2
+Unit nginx@2.service loaded on 4b9c044b.../10.0.0.123
+foobar1 core # fleetctl list-unit-files
+UNIT            HASH    DSTATE          STATE           TARGET
+nginx@.service  9c9269c inactive        inactive        -
+nginx@1.service 9c9269c launched        launched        2fbee5bc.../10.0.0.122
+nginx@2.service 9c9269c loaded          loaded          4b9c044b.../10.0.0.123
+foobar1 core # fleetctl list-units
+UNIT            MACHINE                 ACTIVE          SUB
+nginx@1.service 2fbee5bc.../10.0.0.122  active          running
+nginx@2.service 4b9c044b.../10.0.0.123  inactive        dead
+					</code></pre>
+				</section>
+
+				<section data-background="#4d7e65">
+					<h2>fleetctl journal</h2>
+					<br>
+					<pre><code data-trim contenteditable>
+foobar1 core # fleetctl journal nginx@1
+-- Logs begin at Tue 2015-01-27 17:18:18 UTC, end at Wed 2015-01-28 14:38:05 UTC. --
+Jan 28 14:36:29 foobar1 docker[7690]: 402a3573fdf5: Already exists
+Jan 28 14:36:29 foobar1 docker[7690]: 7ed80e9ad494: Already exists
+Jan 28 14:36:29 foobar1 docker[7690]: 1b436f7d2f5c: Already exists
+Jan 28 14:36:29 foobar1 docker[7690]: 1e9db8768b4c: Already exists
+Jan 28 14:36:29 foobar1 docker[7690]: 9270c8b178a6: Already exists
+Jan 28 14:36:29 foobar1 docker[7690]: 90081fa15a0c: Already exists
+Jan 28 14:36:29 foobar1 docker[7690]: Status: Image is up to date for nginx:latest
+Jan 28 14:36:30 foobar1 docker[7699]: foobar-1
+Jan 28 14:36:30 foobar1 docker[7708]: foobar-1
+Jan 28 14:36:30 foobar1 systemd[1]: Started nginx@1.service.
+					</code></pre>
 				</section>
 
 				<section>
