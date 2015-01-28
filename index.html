@@ -44,7 +44,7 @@
 					<br>
 					<h4>Introduction to CoreOS, etcd, fleet and shipping containers like a boss</h4>
 					<br><br>
-					<small>Created by <a href="http://adamczyk.czest.pl">Łukasz Adamczyk</a> &amp; <a href="mailto:vovcia@gmail.com">Vladimir Mitiouchev</a></small>
+					<small>Created by <a href="mailto:lukasz@adamczyk.krakow.pl">Łukasz Adamczyk</a> &amp; <a href="mailto:vovcia@gmail.com">Vladimir Mitiouchev</a></small>
 					<br>
 					<img src="gfx/avsystem.png" style="border: 0px; background: none; box-shadow: none;">
 				</section>
@@ -60,13 +60,14 @@
 					</ul>
 				</section>
 
-				<section>
+				<section data-background="#ffffff">
 					<h2>Scalability</h2>
 					<br>
 					<h3>How to deal with high load?</h3>
 					<br>
 				</section>
-				<section>
+
+				<section data-background="#ffffff">
 					<h2>Scalability</h2>
                                         <br>
                                         <h3>Scale up - give me more!</h3>
@@ -78,7 +79,8 @@
 						<li class="fragment">Give more storage to the node..</li>
 					</ul>
 				</section>
-                                <section>
+
+                                <section data-background="#ffffff">
                                         <h2>Scalability</h2>
                                         <br>
                                         <h3>Scale up - painful consequences</h3>
@@ -90,7 +92,8 @@
 						<li class="fragment">Availability issues - backup machine needs to be as fast as production</li>
                                         </ul>
                                 </section>
-                                <section>
+
+                                <section data-background="#ffffff">
                                         <h2>Scalability</h2>
                                         <br>
                                         <h3>Scale out - let's cluster!</h3>
@@ -102,7 +105,8 @@
 						<li class="fragment">Remove/reuse nodes as they are not needed</li>
                                         </ul>
                                 </section>
-				<section>
+
+				<section data-background="#ffffff">
 					<h2>Clustering</h2>
 					<br>
 					<h3>What is cluster?</h3>
@@ -114,7 +118,8 @@
 						<li class="fragment">...and save money!</li>
 					</ul>
 				</section>
-				<section>
+
+				<section data-background="#ffffff">
 					<h2>Clustering</h2>
 					<br>
 					<h3>Examples:</h3>
@@ -125,7 +130,8 @@
 						<li class="fragment"><a href="http://hadoop.apache.org/">Apache Hadoop</a></li>
 					</ul>
 				</section>
-				<section>
+
+				<section data-background="#ffffff">
 					<h2>Consensus</h2><br><h3>is..</h3>
 					<ul>
 						<li class="fragment">"fundamental problem in fault-tolerant distributed systems"</li>
@@ -133,7 +139,8 @@
 						<li class="fragment">"replicated state machines"</li>
 					</ul>
 				</section>
-				<section>
+
+				<section data-background="#ffffff">
 					<h2>Raft</h2>
 					<br>
 					<h3>Consensus algorithm</h3>
@@ -144,7 +151,8 @@
                                                 <li class="fragment">Membership changes by using join consensus approach</li>
                                         </ul>
 				</section>
-                                <section>
+				
+				<section data-background="#ffffff">
                                         <h2>Raft</h2>
 					<br>
 					<h3>Basics</h3>
@@ -155,7 +163,8 @@
                                                 <li class="fragment">Only two commands: <i>AppendEntries RPC</i> and <i>RequestVote RPC</i></li>
                                         </ul>
 				</section>
-				<section>
+
+				<section data-background="#ffffff">
                                         <h2>Raft</h2>
                                         <br>
                                         <h3>Elections</h3>
@@ -166,7 +175,8 @@
                                                 <li class="fragment">If votes received from majority, convert to leader</li>
                                         </ul>
                                 </section>
-				<section>
+
+				<section data-background="#ffffff">
                                         <h2>Raft</h2>
                                         <br>
                                         <h3>Operations</h3>
@@ -177,13 +187,13 @@
                                         </ul>
                                 </section>
  
-				<section>
+				<section data-background="#ffffff">
 					<h2>Raftscope</h2>
 					<br>
-					<h3><a href="http://ramcloud.stanford.edu/raft.pdf">In Search of an Understandable Consensus Algorithm (Extended Version)</a></h3>
+					<h4><a href="http://ramcloud.stanford.edu/raft.pdf">In Search of an Understandable Consensus Algorithm (Extended Version)</a></h4>
 					<iframe src="raftscope/index.html" style="border: 0; width: 800px; height: 580px; margin-bottom: 20px"></iframe>
 				</section>
-				<section>
+				<section data-background="#b5533c">
 					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
 					<ul>
 						<li class="fragment">Raft consensus algorithm</li> 
@@ -192,7 +202,8 @@
 						<li class="fragment">Simple implementation of Raft consensus algorithm</li>
 					</ul>
 				</section>
-                                <section>
+
+                                <section data-background="#b5533c">
                                         <img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <ul>
                                                 <li class="fragment">Multiple discovery methods</li>
@@ -200,7 +211,8 @@
                                                 <li class="fragment">Extra nodes can become proxy and can be promoted to follower</li>
                                         </ul>
                                 </section>
-                                <section>
+
+                                <section data-background="#b5533c">
 					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
 					<h3>Discovery service</h3><br>
 					<pre><code data-trim contenteditable>
@@ -214,7 +226,8 @@ https://discovery.etcd.io/6a28e078895c5ec737174db2419bb2f3
 						<li class="fragment">Run your own discovery with <a href="https://github.com/coreos/discovery.etcd.io">github.com/coreos/discovery.etcd.io</a></li>
                                         </ul>
                                 </section>
-                                <section>
+
+                                <section data-background="#b5533c">
 					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <h3>Keys: set</h3><br>
                                         <pre><code data-trim contenteditable>
@@ -256,7 +269,7 @@ $ curl -sL http://127.0.0.1:4001/v2/keys/message | python -m json.tool
     }
 }
 </code></pre>			</section>
-                                <section>
+                                <section data-background="#b5533c">
 					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <h3>Directories</h3><br>
                                         <pre><code data-trim contenteditable>
@@ -289,7 +302,8 @@ $ curl -sL http://127.0.0.1:4001/v2/keys/foo-service | python -m json.tool
 }
 </code></pre>
                                 </section>
-                                <section>
+
+                                <section data-background="#b5533c">
 					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <h3>Test & Set</h3><br>
                                         <pre><code data-trim contenteditable>
@@ -314,7 +328,8 @@ $ curl -sL -X PUT http://127.0.0.1:4001/v2/keys/message?prevValue=Hi -d value=He
 }
 </code></pre>
                                 </section>
-                                <section>
+
+                                <section data-background="#b5533c">
 					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <h3>TTL (Time To Live)</h3><br>
                                         <pre><code data-trim contenteditable>
