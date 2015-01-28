@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -50,7 +50,7 @@
 				</section>
 
 				<section>
-					<h3>Agenda</h3>
+					<h2>Agenda</h2>
 					<br>
 					<ul>
 						<li class="fragment">Clustering</li>
@@ -59,6 +59,7 @@
 						<li class="fragment">fleet</li>
 					</ul>
 				</section>
+
 				<section>
 					<h2>Scalability</h2>
 					<br>
@@ -279,36 +280,68 @@ $ curl -L -X PUT http://127.0.0.1:4001/v2/keys/foo?ttl=20 -d value=bar
 
                                 </section>
 
-				<section>
-					<h3>CoreOS</h3>
+				<section data-background="#00639E">
+					<h2>CoreOS</h2>
 					<br>
 					<ul>
 						<li class="fragment">Cluster oriented</li>
 						<li class="fragment">Container oriented</li>
 						<li class="fragment">Chromium OS/Gentoo based</li>
+						<li class="fragment">Rolling releases</li>
+					</ul>
+				</section>
+
+				<section data-background="#00639E">
+					<h2>CoreOS</h2>
+					<br>
+					<ul>
+						<li class="fragment">Fast and lightweight distro</li>
+						<li class="fragment">64bit only</li>
+						<li class="fragment">Built-in Chaos Monkey</li>
+						<li class="fragment">No package manager</li>
 					</ul>
 				</section>
 				
-				<section>					
+				<section data-background="#00639E">
+					<h2>Containers</h2>
+					<br>
 					<img src="gfx/coreos-containers.svg" style="border: 0px; background: none; box-shadow: none;">
 				</section>
 
-				<section>
-					<h3>System updates</h3>
+				<section data-background="#00639E">
+					<h2>Supported containers</h2>
+					<br>
+					<ul>
+						<li class="fragment"><code>docker</code></li>
+						<li class="fragment"><code>rocket</code></li>
+						<li class="fragment"><code>systemd-nspawn</code></li>
+					</ul>
+				</section>
+
+				<section data-background="#00639E">
+                                        <h2>Debugging tools</h2>
+                                        <br>
+                                        <code>/usr/bin/toolbox</code>
+                                        <br><br>
+					Toolbox will launch a container with full system privileges including access to system PIDs, network interfaces and other global information
+                                </section>
+
+				<section data-background="#00639E">
+					<h2>System updates</h2>
 					<img src="gfx/coreos-update1.svg" style="border: 0px; background: none; box-shadow: none;">
 					<br>
 					CoreOS is currently booted off partition A. An update is installed onto partition B
 				</section>
 
-				<section>
-					<h3>System updates</h3>
+				<section data-background="#00639E">
+					<h2>System updates</h2>
 					<img src="gfx/coreos-update2.svg" style="border: 0px; background: none; box-shadow: none;">
 					<br>
 					Machine is rebooted onto the B partition
 				</section>
 
-				<section>
-					<h3>System updates</h3>
+				<section data-background="#00639E">
+					<h2>System updates</h2>
 					<br>
 					<ul>
 						<li class="fragment">Safe and easy rollback</li>
@@ -316,9 +349,24 @@ $ curl -L -X PUT http://127.0.0.1:4001/v2/keys/foo?ttl=20 -d value=bar
 						<li class="fragment">Fast reboot with kexec</li>
 					</ul>
 				</section>
+
+				<section data-background="#00639E">
+					<h2>Installation from LiveCD</h2>
+					<br>
+					<code><small>coreos-install -d /dev/sda -C stable -c cloud-config.yaml</small></code>
+					<br>
+					<pre>
+ -d DEVICE   Install CoreOS to the given device.
+ -V VERSION  Version to install (e.g. current)
+ -C CHANNEL  Release channel to use (e.g. beta)
+ -o OEM      OEM type to install (e.g. openstack)
+ -c CLOUD    Insert a cloud-init config to be executed on boot
+ -t TMPDIR   Temporary location with enough space to download images
+</pre>
+				</section>
 				
-				<section>
-					<h3>cloud-config</h3>
+				<section data-background="#00639E">
+					<h2>cloud-config sections</h2>
 					<br>
 					<ul>
 						<li class="fragment">
@@ -337,8 +385,8 @@ $ curl -L -X PUT http://127.0.0.1:4001/v2/keys/foo?ttl=20 -d value=bar
 					</ul>
 				</section>
 
-				<section>
-					<h3>cloud-config example</h3>
+				<section data-background="#00639E">
+					<h2>cloud-config example</h2>
 					<br>
 					<pre><code data-trim contenteditable>
 #cloud-config
@@ -346,8 +394,6 @@ hostname: foobar1
 ssh_authorized_keys:
   - ssh-rsa AAAAC7KsWb3w4s9i5/HJqyAbqqyqnR9I9two2htKOsCRd...
 coreos:
-  update:
-    reboot-strategy: best-effort
   etcd:
     # generate using https://discovery.etcd.io/new
     discovery: https://discovery.etcd.io/&lt;token&gt;
@@ -359,6 +405,52 @@ coreos:
     - name: fleet.service
       command: start
 					</code></pre>
+				</section>
+
+				<section data-background="#4d7e65">
+					<h2>systemd glossary</h2>
+					<br>
+					<ul>
+						<li class="fragment"><code>unit</code><br>is a configuration file that describes the properties of the process that you'd like to run</li>
+						<br><li class="fragment"><code>target</code><br>is a grouping mechanism that allows systemd to start up groups of processes at the same time</li>
+					</ul>
+				</section>
+
+				<section data-background="#4d7e65">
+					<h2>fleet</h2>
+					<br>
+					<blockquote>
+						"You can think of fleet as an extension of systemd that operates at the cluster level instead of the machine level. Systemd is a single machine init system; fleet is a cluster init system."
+					</blockquote>
+				</section>
+
+				<section data-background="#4d7e65">
+					<h2>fleet-specific options</h2>
+					<br>
+					<small>
+					<table>
+						<tr>
+							<td><code>MachineID</code></td>
+							<td>Require the unit be scheduled to the machine identified by the given string.</td>
+						</tr>
+						<tr>
+							<td><code>MachineOf</code></td>
+							<td>Limit eligible machines to the one that hosts a specific unit.</td>
+						</tr>
+						<tr>
+							<td><code>MachineMetadata</code></td>
+							<td>Limit eligible machines to those with this specific metadata.</td>
+						</tr>
+						<tr>
+							<td><code>Conflicts</code></td>
+							<td>Prevent a unit from being collocated with other units using glob-matching on the other unit names.</td>
+						</tr>
+						<tr>
+							<td><code>Global</code></td>
+							<td>Schedule this unit on all agents in the cluster.</td>
+						</tr>
+					</table>
+					</small>
 				</section>
 
 				<section>
