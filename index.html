@@ -184,7 +184,7 @@
                                         <ul>
                                                 <li class="fragment">Leaders receive command from client, write to log and send AppendEntries to followers (in parallel)</li>
                                                 <li class="fragment">Followers acknowledge command (if agreed on term number and log index)</li>
-                                                <li class="fragment">When command is replicated to majority, apply to staten machine and return result to client</li>
+                                                <li class="fragment">When command is replicated to majority, apply to state machine and return result to client</li>
                                         </ul>
                                 </section>
  
@@ -229,6 +229,7 @@ https://discovery.etcd.io/6a28e078895c5ec737174db2419bb2f3
                                 </section>
 
                                 <section data-background="#b5533c">
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
                                         <h3>Keys: set</h3>
                                         <pre><code data-trim contenteditable>
 $ etcdctl set /message Hello
@@ -250,11 +251,11 @@ $ curl -sL -X PUT http://127.0.0.1:4001/v2/keys/message -d value="Hello" | pytho
 </code></pre>			</section>
 
                                 <section data-background="#b5533c">
-					<h2>etcd Keys: get</h2>
+					<img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+					<h2>Keys: get</h2>
                                         <pre><code data-trim contenteditable>
 $ etcdctl get /message
 Hello
-
 $ curl -sL http://127.0.0.1:4001/v2/keys/message | python -m json.tool
 {
     "action": "get",
@@ -279,7 +280,12 @@ localhost:1111
 
 $ etcdctl ls /foo-service
 /foo-service/container1
+</code></pre>                   </section>
 
+                                <section data-background="#b5533c">
+                                        <img src="gfx/etcd-horizontal-color.svg" style="border: 0px; background: none; box-shadow: none;">
+                                        <h3>Directories</h3>
+                                        <pre><code data-trim contenteditable> 
 $ curl -sL http://127.0.0.1:4001/v2/keys/foo-service | python -m json.tool
 {
     "action": "get",
@@ -307,7 +313,6 @@ $ curl -sL http://127.0.0.1:4001/v2/keys/foo-service | python -m json.tool
                                         <pre><code data-trim contenteditable>
 $ etcdctl set /message "Hi" --swap-with-value "Hello"
 Hi
-
 $ curl -sL -X PUT http://127.0.0.1:4001/v2/keys/message?prevValue=Hi -d value=Hello | python -m json.tool
 {
     "action": "compareAndSwap",
@@ -333,7 +338,6 @@ $ curl -sL -X PUT http://127.0.0.1:4001/v2/keys/message?prevValue=Hi -d value=He
                                         <pre><code data-trim contenteditable>
 $ etcdctl set /foo "Expiring Soon" --ttl 20
 Expiring Soon
-
 $ curl -sL -X PUT http://127.0.0.1:4001/v2/keys/foo?ttl=20 -d value=bar | python -m json.tool
 {
     "action": "set",
